@@ -16,5 +16,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="zh-Hant"><body>{children}</body></html>;
+  return <html lang="zh-Hant"><head><link rel="preload" as="image" href="/game/branding/hero-desktop.webp" media="(min-width: 701px)"/><link rel="preload" as="image" href="/game/branding/hero-mobile.webp" media="(max-width: 700px)"/></head><body>{children}</body></html>;
 }
