@@ -1,0 +1,29 @@
+/* Earth-orbit review pool in Space Academy */
+.academy-body > aside > button.review-planet {
+  margin-top: 13px;
+  border-color: #2379a0;
+  background: radial-gradient(circle at 18% 50%, rgba(47, 151, 211, .3), transparent 22%), linear-gradient(90deg, #09283a, #071923);
+}
+
+.academy-body > aside > button.review-planet > i {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #51bde8;
+  border-radius: 50%;
+  background: #0c3650;
+  box-shadow: 0 0 14px rgba(65, 188, 235, .28);
+  font-size: 17px;
+}
+
+.academy-body > aside > button.review-planet:not(:disabled):hover,
+.academy-body > aside > button.review-planet.active {
+  border-color: #74dfff;
+  box-shadow: inset 3px 0 #74dfff, 0 0 18px rgba(65, 188, 235, .16);
+}
+
+.academy-body > aside > button.review-planet:disabled {
+  cursor: not-allowed;
+  opacity: .48;
+}

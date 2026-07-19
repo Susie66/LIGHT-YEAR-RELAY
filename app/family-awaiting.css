@@ -1,0 +1,96 @@
+.family-entry.waiting {
+  border-color: rgba(255, 183, 76, 0.55);
+  box-shadow: inset 0 0 26px rgba(255, 161, 52, 0.06);
+}
+
+.family-entry.waiting header strong {
+  color: #ffc46a;
+  animation: family-signal-pulse 1.8s ease-in-out infinite;
+}
+
+.family-awaiting > i {
+  color: #ffc46a;
+  animation: family-orbit-pulse 2.4s linear infinite;
+}
+
+.family-awaiting > b {
+  color: #ffc46a;
+  letter-spacing: 0.16em;
+}
+
+.family-sent-summary {
+  width: min(680px, 92%);
+  margin-top: 1.25rem;
+  padding: 1rem 1.15rem;
+  text-align: left;
+  border: 1px solid rgba(64, 190, 255, 0.3);
+  background: linear-gradient(135deg, rgba(7, 31, 48, 0.88), rgba(2, 15, 26, 0.76));
+}
+
+.family-sent-summary > span {
+  color: #55d5ff;
+  font-size:.8rem;
+  letter-spacing: 0.18em;
+}
+
+.family-sent-summary h4 {
+  margin: 0.45rem 0 0.8rem;
+  color: #d9f5ff;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.family-sent-summary dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 1.2rem;
+  margin: 0;
+}
+
+.family-sent-summary dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(95, 187, 225, 0.15);
+}
+
+.family-sent-summary dt {
+  color: #718fa2;
+  font-size:.8rem;
+}
+
+.family-sent-summary dd {
+  margin: 0;
+  color: #aeeaff;
+  font-size:.8rem;
+  text-align: right;
+}
+
+.family-sent-summary p {
+  margin: 0.8rem 0 0;
+  color: #8ea9b9;
+  font-size:.8rem;
+  line-height: 1.65;
+}
+
+.family-awaiting > button {
+  min-width: 270px;
+  margin-top: 1.25rem;
+  padding: 0.8rem 1.25rem;
+  color: #9de8ff;
+  border: 1px solid rgba(64, 190, 255, 0.48);
+  background: rgba(3, 25, 41, 0.72);
+  cursor: pointer;
+}
+
+@keyframes family-signal-pulse {
+  0%, 100% { opacity: 0.58; text-shadow: 0 0 4px transparent; }
+  50% { opacity: 1; text-shadow: 0 0 12px rgba(255, 183, 76, 0.72); }
+}
+
+@keyframes family-orbit-pulse {
+  0% { transform: rotate(0deg) scale(0.92); opacity: 0.55; }
+  50% { transform: rotate(180deg) scale(1.08); opacity: 1; }
+  100% { transform: rotate(360deg) scale(0.92); opacity: 0.55; }
+}

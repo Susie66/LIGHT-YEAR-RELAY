@@ -1,0 +1,9 @@
+export type MissionStatus={ship:{power:number;oxygen:number;hull:number;comms:number;radiation:string;radiationNote:string};crew:{morale:number;health:number;fatigue:number;stress:number;trust:number;condition:string};objectives:{primary:string;primaryNote:string;secondary:string;secondaryNote:string;risk:string}};
+
+export const missionStatus:Record<string,MissionStatus>={
+  "A7-LSS-043":{ship:{power:78,oxygen:62,hull:100,comms:86,radiation:"0.31 mSv/h",radiationNote:"安全範圍內"},crew:{morale:70,health:88,fatigue:68,stress:57,trust:68,condition:"疲勞／生命徵象穩定"},objectives:{primary:"診斷氧氣循環異常",primaryNote:"確認真實洩漏或感測器誤報",secondary:"校準 O₂-A 主感測器",secondaryNote:"避免不必要的人工拆卸",risk:"氧氣讀數持續下降"}},
+  "A7-SWX-118":{ship:{power:71,oxygen:81,hull:100,comms:54,radiation:"2.84 mSv/h",radiationNote:"太陽風暴快速上升"},crew:{morale:74,health:82,fatigue:52,stress:76,trust:72,condition:"艙外校準／輻射警戒"},objectives:{primary:"召回艙外作業人員",primaryNote:"在風暴抵達前進入避難區",secondary:"維持清楚的召回通訊",secondaryNote:"例行校準不得延誤撤離",risk:"指令封包完整度僅 72%"}},
+  "A7-ANO-231":{ship:{power:83,oxygen:85,hull:100,comms:73,radiation:"0.46 mSv/h",radiationNote:"未知訊號造成局部雜訊"},crew:{morale:79,health:90,fatigue:43,stress:69,trust:76,condition:"高度專注／情緒激動"},objectives:{primary:"驗證規律窄頻訊號",primaryNote:"重複觀測並排除儀器誤差",secondary:"隔離 Level 5 影像",secondaryNote:"審核 Cassian 的家庭照片",risk:"未知來源可能回應雷達"}},
+  "A7-NAV-274":{ship:{power:66,oxygen:79,hull:89,comms:81,radiation:"0.38 mSv/h",radiationNote:"正常深空背景值"},crew:{morale:61,health:80,fatigue:91,stress:84,trust:64,condition:"清醒 21 小時／判斷風險"},objectives:{primary:"離開碰撞預測走廊",primaryNote:"安全餘裕只剩四分鐘",secondary:"保留重力助推窗口",secondaryNote:"限制燃料與航程損失",risk:"未編目小行星進入航線"}},
+  "A7-PWR-317":{ship:{power:41,oxygen:55,hull:84,comms:48,radiation:"0.62 mSv/h",radiationNote:"電力不足影響屏蔽監測"},crew:{morale:38,health:74,fatigue:79,stress:94,trust:81,condition:"家庭危機／極高壓力"},objectives:{primary:"隔離熱失控備援電池",primaryNote:"維持生命系統與火災抑制",secondary:"決定返航與樣本供電",secondaryNote:"三套系統無法同時維持",risk:"剩餘安全供電 06h 18m"}}
+};
