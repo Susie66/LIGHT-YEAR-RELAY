@@ -37,5 +37,5 @@ const optionSets:[string,string,string][]=[
 
 export const sideEvents:SideEvent[]=topics.flatMap((topic,topicIndex)=>variants.map((variant,variantIndex)=>{
   const options=optionSets[(topicIndex+variantIndex)%optionSets.length];
-  return {id:`SIDE-${String(topicIndex+1).padStart(2,"0")}-${String(variantIndex+1).padStart(2,"0")}`,category:topic[0],icon:topic[1],title:`${topic[2]}／${variant}`,body:`${topic[3]} 這件事不影響主要任務，但會被寫進船員生活紀錄。`,from:["Cassian","Mira","Noah","Elena","Jun"][(topicIndex+variantIndex)%5],options,replies:["收到。知道地球端有人在意這些小事，感覺沒有那麼遠了。","好，我會處理，也會提醒大家別把日常生活當成不重要的事。","已寫入生活日誌。也許回到地球後，這會是我們最常想起的一刻。"]};
+  return {id:`SIDE-${String(topicIndex+1).padStart(2,"0")}-${String(variantIndex+1).padStart(2,"0")}`,category:topic[0],icon:topic[1],title:`${topic[2]}／${variant}`,body:`${topic[3]} 這件事不影響主要任務，但會被寫進船員生活紀錄。`,from:["Cassian","Mira","Noah","Olivia","Jun"][(topicIndex+variantIndex)%5],options,replies:["收到。知道地球端有人在意這些小事，感覺沒有那麼遠了。","好，我會處理，也會提醒大家別把日常生活當成不重要的事。","已寫入生活日誌。也許回到地球後，這會是我們最常想起的一刻。"]};
 }));
