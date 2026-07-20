@@ -334,6 +334,7 @@ export default function Home() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const missionAudioRef = useRef<HTMLAudioElement>(null);
   const ambienceAudioRef = useRef<HTMLAudioElement>(null);
+  const gamePreloadPromiseRef = useRef<Promise<void> | null>(null);
   const [missionAudioPlaying, setMissionAudioPlaying] = useState(false);
   const [gameImagesReady, setGameImagesReady] = useState(false);
   const [gameLoadProgress, setGameLoadProgress] = useState(0);
@@ -606,6 +607,34 @@ export default function Home() {
     },
     [musicVolume],
   );
+  const preloadInitialGameAssets = useCallback(() => {
+    if (gamePreloadPromiseRef.current) return gamePreloadPromiseRef.current;
+    let completed = 0;
+    gamePreloadPromiseRef.current = Promise.all(
+      initialGameImages.map(
+        (src) =>
+          new Promise<void>((resolve) => {
+            const image = new Image();
+            let settled = false;
+            const finish = () => {
+              if (settled) return;
+              settled = true;
+              completed += 1;
+              setGameLoadProgress(
+                Math.round((completed / initialGameImages.length) * 100),
+              );
+              resolve();
+            };
+            image.onload = finish;
+            image.onerror = finish;
+            image.decoding = "async";
+            image.src = src;
+            if (image.complete) finish();
+          }),
+      ),
+    ).then(() => setGameImagesReady(true));
+    return gamePreloadPromiseRef.current;
+  }, []);
   useEffect(() => {
     if (phase !== "sending") return;
     const timer = window.setTimeout(() => {
@@ -885,7 +914,7 @@ export default function Home() {
   }, [ambienceSrc, showIntro]);
   useEffect(() => {
     const audio = missionAudioRef.current;
-    if (!audio) return;
+    if (!audio || showIntro) return;
     audio.pause();
     audio.load();
     setMissionAudioPlaying(false);
@@ -895,45 +924,32 @@ export default function Home() {
           Math.min(activeMissionIndex + 1, storyMissions.length - 1)
         ].id
       ];
-    const assets = [
-      activeMissionMedia.scene,
-      nextMedia.scene,
-      ...nextMedia.celestial.map((item) => item.src),
-    ];
-    assets.forEach((src) => {
+    const timer = window.setTimeout(() => {
       const image = new Image();
-      image.src = src;
-    });
-  }, [activeMission.id, activeMissionIndex, activeMissionMedia.scene]);
+      image.decoding = "async";
+      image.src = nextMedia.scene;
+    }, 5000);
+    return () => window.clearTimeout(timer);
+  }, [activeMission.id, activeMissionIndex, showIntro]);
   useEffect(() => {
-    let cancelled = false;
-    let completed = 0;
-    const loadImage = (src: string) =>
-      new Promise<void>((resolve) => {
-        const image = new Image();
-        let settled = false;
-        const finish = () => {
-          if (settled) return;
-          settled = true;
-          completed += 1;
-          if (!cancelled)
-            setGameLoadProgress(
-              Math.round((completed / initialGameImages.length) * 100),
-            );
-          resolve();
-        };
-        image.onload = finish;
-        image.onerror = finish;
-        image.src = src;
-        if (image.complete) finish();
-      });
-    void Promise.all(initialGameImages.map(loadImage)).then(() => {
-      if (!cancelled) setGameImagesReady(true);
-    });
-    return () => {
-      cancelled = true;
+    let idleId: number | undefined;
+    const begin = () => {
+      if ("requestIdleCallback" in window)
+        idleId = window.requestIdleCallback(
+          () => void preloadInitialGameAssets(),
+          { timeout: 3500 },
+        );
+      else idleId = window.setTimeout(() => void preloadInitialGameAssets(), 1200);
     };
-  }, []);
+    if (document.readyState === "complete") begin();
+    else window.addEventListener("load", begin, { once: true });
+    return () => {
+      window.removeEventListener("load", begin);
+      if (idleId === undefined) return;
+      if ("cancelIdleCallback" in window) window.cancelIdleCallback(idleId);
+      else window.clearTimeout(idleId);
+    };
+  }, [preloadInitialGameAssets]);
   useEffect(() => {
     if (!enteringGame || gameImagesReady) return;
     const timer = window.setTimeout(() => setShowSlowLoading(true), 350);
@@ -1458,7 +1474,6 @@ export default function Home() {
   };
   const startMusic = () => {
     void audioRef.current?.play().catch(() => undefined);
-    void ambienceAudioRef.current?.play().catch(() => undefined);
   };
   const toggleMissionReport = () => {
     const audio = missionAudioRef.current;
@@ -1475,6 +1490,7 @@ export default function Home() {
     }
   };
   const openGame = () => {
+    void preloadInitialGameAssets();
     startMusic();
     setResumePrompt(false);
     setShowSlowLoading(false);
@@ -1627,15 +1643,15 @@ export default function Home() {
         ref={audioRef}
         src="/game/audio/music/星際回聲.mp3"
         loop
-        preload="auto"
+        preload="none"
       />
       <audio
         ref={missionAudioRef}
         src={activeMissionMedia.audio}
-        preload="metadata"
+        preload="none"
         onEnded={() => setMissionAudioPlaying(false)}
       />
-      <audio ref={ambienceAudioRef} src={ambienceSrc} loop preload="metadata" />
+      <audio ref={ambienceAudioRef} src={ambienceSrc} loop preload="none" />
       {missionsOpen && (
         <aside
           className="mission-asset-rack"
@@ -2632,7 +2648,7 @@ export default function Home() {
                       muted
                       loop
                       playsInline
-                      preload="metadata"
+                      preload="none"
                     />
                   )}
                   <div className="scanlines" />
