@@ -8,6 +8,13 @@ Rather than piloting a spacecraft, players receive delayed transmissions, analyz
 
 This prototype was created for **OpenAI Build Week** as the first playable adaptation of a narrative universe that I had previously developed as an AI-powered interactive storytelling experience.
 
+
+![遊戲介面-英語](./screenshot/en.png "遊戲介面-英語演示")
+
+
+
+![遊戲介面-中文](./screenshot/cn.png "遊戲介面-中文演示")
+
 ## Play the Demo
 
 **Live demo:** [light-year-relay.vanline2018.workers.dev](https://light-year-relay.vanline2018.workers.dev/)
