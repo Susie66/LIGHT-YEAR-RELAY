@@ -8,6 +8,12 @@ Rather than piloting a spacecraft, players receive delayed transmissions, analyz
 
 This prototype was created for **OpenAI Build Week** as the first playable adaptation of a narrative universe that I had previously developed as an AI-powered interactive storytelling experience.
 
+## Play the Demo
+
+**Live demo:** [light-year-relay.vanline2018.workers.dev](https://light-year-relay.vanline2018.workers.dev/)
+
+No installation is required. Open the link in a modern desktop or mobile browser, choose a language, and begin the mission. Headphones are recommended for the full audio experience.
+
 ---
 
 # Overview
@@ -73,6 +79,7 @@ Unlike traditional strategy games, players never know the spacecraft's current c
 - Family Relay communication system
 - Educational astronomy content
 - Persistent mission consequences
+- Local browser-based progress saving
 - Cinematic interface
 - Responsive web application
 - AI-assisted English localization
@@ -83,9 +90,10 @@ Unlike traditional strategy games, players never know the spacecraft's current c
 
 ## Frontend
 
-- HTML5
-- CSS3
-- JavaScript
+- React 19
+- TypeScript
+- CSS
+- vinext (Next.js-compatible runtime powered by Vite)
 
 ## AI
 
@@ -101,8 +109,8 @@ Unlike traditional strategy games, players never know the spacecraft's current c
 
 ## Platform
 
-- Web Browser
-- GitHub Pages
+- Modern web browsers
+- Cloudflare Workers
 
 ---
 
@@ -141,25 +149,37 @@ Core systems include:
 
 # How to Run Locally
 
-Clone the repository.
+## Requirements
+
+- Node.js 22.13 or later
+- npm 10 or later
+
+## Installation
+
+Clone the repository and install its dependencies:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Susie66/LIGHT-YEAR-RELAY.git
+cd LIGHT-YEAR-RELAY
+npm install
 ```
 
-Open:
-
-```text
-index.html
-```
-
-or launch any local web server.
-
-Example:
+Build the project, then start it locally:
 
 ```bash
-python -m http.server
+npm run build
+npm start
 ```
+
+Open `http://localhost:3000` (or the URL printed in the terminal).
+
+For development with automatic reload, you can instead run:
+
+```bash
+npm run dev
+```
+
+No API key or external account is required to play the current version locally.
 
 ---
 
@@ -384,20 +404,30 @@ Current prototype limitations include:
 
 - Limited mission count
 - Narrative branches are still expanding
-- No save/load system
-- No voice acting yet
+- Progress is stored only in the local browser, with no cloud sync or cross-device transfer
+- Voice acting is available for selected moments but does not yet cover all dialogue
 - Educational content is still growing
 - More mission types and endings are planned
 
 ---
 
-# Third-Party Assets and Licenses
+# AI Tools, Assets, and Attribution
 
-This project uses AI-assisted creative tools for concept art, illustrations, music, sound effects, and promotional videos.
+The following tools were used during production:
 
-Any third-party assets remain subject to their respective licenses.
+| Tool | Plan used | Contribution |
+|------|-----------|--------------|
+| ChatGPT (GPT-5.6) | Paid plan | Image creation and narrative/data development |
+| Codex | Paid plan | Programming and structured game-data development |
+| ElevenLabs | Free plan | Sound effects used only in the OpenAI Build Week demo |
+| Vidu AI | Free plan | Video assets used only in the OpenAI Build Week demo |
+| MUSICFUL AI | Commercial plan | Background music |
 
-Open-source libraries retain their original licenses.
+AI-generated outputs were selected, edited, integrated, and reviewed by the project author. The ElevenLabs and Vidu AI assets in this repository are included solely for judging and demonstration during OpenAI Build Week and are not offered for reuse or redistribution.
+
+Tool names and service marks belong to their respective owners. Use of a paid, free, or commercial plan describes the account tier used during production; it does not transfer ownership of the underlying services or expand the rights granted by their terms. All generated and third-party materials remain subject to the applicable provider terms in effect when they were created. Open-source dependencies retain their original licenses.
+
+To reduce copyright and licensing risk, no third-party asset should be extracted or reused independently of this demo. Any future public or commercial release should re-check each provider's current terms and replace any asset whose scope of use cannot be confirmed.
 
 ---
 
