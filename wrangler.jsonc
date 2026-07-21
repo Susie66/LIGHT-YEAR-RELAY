@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "light-year-relay",
-  "compatibility_date": "2026-07-19",
+  "compatibility_date": "2026-05-22",
   "main": "./worker/index.ts",
   "assets": {
     "directory": "dist/client",
