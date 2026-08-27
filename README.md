@@ -291,6 +291,20 @@ Codex primarily assisted with software engineering.
 
 Every AI-assisted implementation was reviewed, modified, tested, and validated before becoming part of the final project.
 
+### Conversation References
+
+During development, I collaborated extensively with GPT-5.6 and Codex across game design, software engineering, narrative development, localization, and production workflows.
+
+The following Codex conversation IDs are provided as references for the development process, as requested by the OpenAI Build Week submission guidelines.
+
+| Conversation | ID |
+|-------------|------------------------------------------------|
+| Conversation 1 | `019f784f-eb46-7fa2-94ac-69ac4f53f2e0` |
+| Conversation 2 | `019f7862-ac2e-72c0-90b9-7a12a24720a7` |
+| Conversation 3 | `019f74de-b75f-75f2-bbbc-e2d1d020d7cf` |
+
+These conversations document significant portions of the design, implementation, iteration, and refinement process throughout the development of **Light-Year Relay**.
+
 ---
 
 # Key Human Decisions
